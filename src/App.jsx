@@ -15,7 +15,7 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-black text-white">
+      <div className="min-h-screen bg-black text-white overflow-x-hidden">
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />

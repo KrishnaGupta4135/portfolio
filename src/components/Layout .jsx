@@ -146,7 +146,7 @@ const Layout = ({ children }) => {
             <div className="md:hidden flex items-center gap-4">
               <button
                 onClick={() => setIsTerminalVisible(!isTerminalVisible)}
-                className="p-2 rounded-md text-gray-300 hover:bg-gray-700"
+                className="p-2 rounded-md  hover:bg-gray-700 text-purple-500 hover:text-gray-300"
               >
                 Terminal
               </button>

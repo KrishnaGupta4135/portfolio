@@ -49,31 +49,23 @@ export const Experience = () => {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto w-full px-4 md:px-6">
-      <div className="space-y-8" ref={timelineRef}>
+    <div className="w-full ml-10 flex-1">
+      <div className="space-y-6 content-center" ref={timelineRef}>
         {experiences.map((exp, index) => (
-          <div
-            key={index}
-            className="bg-gray-800/50 rounded-xl p-4 md:p-6 hover:bg-gray-800/60 transition-colors"
-          >
-            <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2 md:gap-4 mb-4">
+          <div key={index} className="bg-gray-800/50 rounded-xl p-6 w-full">
+            <div className="flex flex-col sm:flex-row justify-between items-start gap-2 mb-4">
               <div>
-                <h3 className="text-xl md:text-2xl font-bold">{exp.company}</h3>
+                <h3 className="text-xl sm:text-2xl font-bold">{exp.company}</h3>
                 <p className="text-purple-400">{exp.role}</p>
               </div>
-              <span className="text-gray-400 text-sm md:text-base">
-                {exp.period}
-              </span>
+              <span className="text-gray-400">{exp.period}</span>
             </div>
             <p className="text-gray-300 mb-4">{exp.description}</p>
             <ul className="space-y-2">
               {exp.achievements.map((achievement, i) => (
-                <li
-                  key={i}
-                  className="text-gray-300 flex items-center gap-2 text-sm md:text-base"
-                >
-                  <span className="w-2 h-2 bg-purple-500 rounded-full flex-shrink-0" />
-                  {achievement}
+                <li key={i} className="text-gray-300 flex items-start gap-2">
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0" />
+                  <span>{achievement}</span>
                 </li>
               ))}
             </ul>

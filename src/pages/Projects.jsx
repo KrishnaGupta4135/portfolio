@@ -46,7 +46,7 @@ export const Projects = () => {
 
   return (
     <div className="space-y-12">
-      <div className="grid grid-cols-2 gap-8" ref={projectsRef}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8" ref={projectsRef}>
         {projects.map((project, index) => (
           <div
             key={index}

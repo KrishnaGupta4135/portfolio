@@ -83,9 +83,9 @@ export const Contact = () => {
           transition: "opacity 1s, transform 1s",
         }}
       >
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/KrishnaGupta4135"
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center p-6 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors"
@@ -96,7 +96,7 @@ export const Contact = () => {
           </a>
 
           <a
-            href="https://linkedin.com/in/yourusername"
+            href="http://www.linkedin.com/in/krishna-gupta-183733220"
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center p-6 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors"
@@ -106,17 +106,17 @@ export const Contact = () => {
             <p className="text-sm text-gray-400">Let's connect</p>
           </a>
 
-          <a
-            href="mailto:your.email@example.com"
+          {/* <a
+            href="mailto:krishnagupta4135@gmail.com"
             className="flex flex-col items-center p-6 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors"
           >
             <Mail className="w-8 h-8 mb-2" />
             <h3 className="font-medium">Email</h3>
             <p className="text-sm text-gray-400">Drop me a line</p>
-          </a>
+          </a> */}
         </div>
 
-        <div className="text-center">
+        {/* <div className="text-center">
           <p className="text-gray-400">Prefer to connect on other platforms?</p>
           <div className="flex items-center justify-center gap-4 mt-4">
             <a
@@ -128,7 +128,7 @@ export const Contact = () => {
               <Twitter className="w-5 h-5" />
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -17,32 +17,74 @@ export const Projects = () => {
 
   const projects = [
     {
-      title: "E-commerce Platform",
-      description: "A full-stack e-commerce solution with React and Node.js",
-      tech: ["React", "Node.js", "MongoDB"],
-      image: "/api/placeholder/400/300",
+      title: "LangChain-Based Chatbot - GetGPT (ESG Project)",
+      description:
+        "A Streamlit-based web application to serve as the chatbot's interface, enabling seamless interaction with the GetGPT Assistant.",
+      tech: [
+        "LangChain",
+        "OpenAI API",
+        "Streamlit",
+        "PostgreSQL",
+        "SERPAPI",
+        "Databricks Azure Portal",
+        "Python",
+      ],
+      image: "/images/LangChain-Based-Chatbot.png",
     },
     {
-      title: "Task Management App",
-      description: "Collaborative task management with real-time updates",
-      tech: ["Vue", "Firebase", "Tailwind"],
-      image: "/api/placeholder/400/300",
+      title: "Career Companion ChatBot (C3Bot)",
+      description:
+        "An advanced career companion chatbot and dynamic website designed to assist users in navigating their professional journey with ease and efficiency.",
+      tech: [
+        "Flask",
+        "Rasa Framework",
+        "AI/ML",
+        "Selenium",
+        "Google APIs (Gmail & Calendar)",
+        "Python",
+      ],
+      image: "/images/ai-chatbot-companion.png",
     },
     {
-      title: "Portfolio Website",
-      description: "Personal portfolio with GSAP animations",
-      tech: ["React", "GSAP", "Tailwind"],
-      image: "/api/placeholder/400/300",
+      title: "Music Recommendation System ",
+      description:
+        "It is designed to analyze users' facial expressions and provide personalized music recommendations based on their emotional state.",
+      tech: [
+        "OpenCV",
+        "TensorFlow/Keras",
+        "Python",
+        "Music Streaming APIs",
+        "Flask/Streamlit",
+      ],
+      image: "/images/Music-Recommendation-System.jpeg",
     },
-    // Add more projects...
-  ].concat(
-    Array(3).fill({
-      title: "Coming Soon",
-      description: "More exciting projects in development",
-      tech: ["???"],
-      image: "/api/placeholder/400/300",
-    })
-  );
+    {
+      title: "Email Spam Classification System",
+      description:
+        "It accurately identify and filter spam emails using robust text preprocessing and machine learning techniques.",
+      tech: [
+        "Python",
+        "NLTK",
+        "Scikit-learn",
+        "Machine Learning (Naive Bayes, SVM, Random Forest)",
+      ],
+      image: "/images/Email-Spam-Classification-System.png",
+    },
+    // {
+    //   title: "Portfolio Website",
+    //   description: "Personal portfolio with GSAP animations",
+    //   tech: ["React", "GSAP", "Tailwind"],
+    //   image: "/images/portfolio.png",
+    // },
+  ];
+  // .concat(
+  //   Array(3).fill({
+  //     title: "Coming Soon",
+  //     description: "More exciting projects in development",
+  //     tech: ["???"],
+  //     image: "/api/placeholder/400/300",
+  //   })
+  // );
 
   return (
     <div className="space-y-12">

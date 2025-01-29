@@ -13,37 +13,26 @@ export const Experience = () => {
 
   const experiences = [
     {
-      company: "Tech Solutions Inc",
-      role: "Senior Frontend Developer",
-      period: "2021 - Present",
+      company: "Dotsquares Pvt. Ltd., Jaipur, Rajasthan",
+      role: "Associate Programmer (AI/ML Department)",
+      period: "August 2023 – Present",
+      description: "Description ....",
+      achievements: [
+        "Spearheaded the ESG Project (GetGPT) by developing a Langchain-based chatbot using OpenAI APIs for versatile user query handling.",
+        "Built a Streamlit web app to enable user interactions with GetGPT, incorporating database-driven, internet-search, and LLM-based response mechanisms.",
+        "Automated data extraction from news websites, storing datasets in PostgreSQL on Databricks Azure Portal.",
+        "Developed the Career Companion Chatbot (C3Bot), featuring an AI-powered resume generator, customization options, Rasa-based chatbot integration, and Selenium-based job automation.",
+      ],
+    },
+    {
+      company: "Axis India Machine Learning, Jaipur, Rajasthan",
+      role: "Data Science Intern",
+      period: "May 2023 – July 2023",
       description:
-        "Leading frontend development team, implementing new features",
+        "Gained hands-on experience in Deep Learning through research paper implementation and real-world challenges.",
       achievements: [
-        "Reduced load time by 40%",
-        "Implemented new design system",
-        "Mentored junior developers",
-      ],
-    },
-    {
-      company: "Digital Innovations",
-      role: "Full Stack Developer",
-      period: "2019 - 2021",
-      description: "Full stack development with React and Node.js",
-      achievements: [
-        "Built microservices architecture",
-        "Improved API response time",
-        "Implemented CI/CD pipeline",
-      ],
-    },
-    {
-      company: "StartUp Co",
-      role: "Junior Developer",
-      period: "2017 - 2019",
-      description: "Frontend development with Vue.js",
-      achievements: [
-        "Developed responsive UI components",
-        "Integrated third-party APIs",
-        "Optimized application performance",
+        "NIH Chest Classification Project: Created a web app for chest X-ray disease detection with localization, leveraging deep learning and image processing techniques.",
+        "Monkey Species Classification: Built a high-accuracy classification system using VGG16 and VGG19 CNNs, making species identification user-friendly and effective.",
       ],
     },
   ];

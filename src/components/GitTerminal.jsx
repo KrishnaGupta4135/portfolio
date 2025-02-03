@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Terminal } from "lucide-react";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 
-// Register GSAP plugins
 gsap.registerPlugin(TextPlugin);
 
 const GitTerminal = ({ name }) => {
@@ -12,13 +11,13 @@ const GitTerminal = ({ name }) => {
   const [output, setOutput] = useState([
     'Type "help" to see available commands',
   ]);
-  const [currentTitle, setCurrentTitle] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const terminalRef = useRef(null);
   const textRef = useRef(null);
   const timelineRef = useRef(null);
   const outputContainerRef = useRef(null);
+  const cursorRef = useRef(null);
 
   // Auto-scroll effect
   useEffect(() => {
@@ -33,46 +32,62 @@ const GitTerminal = ({ name }) => {
     if (timelineRef.current) {
       timelineRef.current.kill();
     }
-    setCurrentTitle("");
     initializeTypingAnimation();
   }, [location.pathname]);
 
-  // Enhanced typing effect using GSAP
   const initializeTypingAnimation = () => {
     const titles = ["Full Stack Developer", "UI/UX Designer", "Problem Solver"];
     const baseText = `${name}\nI am a `;
 
-    // Create a repeating timeline
-    timelineRef.current = gsap.timeline({ repeat: -1 });
+    if (!textRef.current) return;
 
-    // Set initial text
-    timelineRef.current.set(textRef.current, { text: baseText });
+    // Kill existing timeline if it exists
+    if (timelineRef.current) {
+      timelineRef.current.kill();
+    }
 
-    // Add animations for each title
-    titles.forEach((title) => {
+    // Create new timeline
+    const tl = gsap.timeline({ repeat: -1 });
+    timelineRef.current = tl;
+
+    // Set initial state
+    tl.set(textRef.current, { text: baseText });
+    tl.set(cursorRef.current, { opacity: 1 });
+
+    // Create typing effect for each title
+    titles.forEach((title, index) => {
       // Type the title
-      timelineRef.current.to(textRef.current, {
-        duration: title.length * 0.1,
+      tl.to(textRef.current, {
+        duration: 2,
         text: baseText + title,
         ease: "none",
       });
 
-      // Pause at the end
-      timelineRef.current.to({}, { duration: 1.5 });
+      // Pause at full text
+      tl.to({}, { duration: 1.8 });
 
-      // Delete the title
-      timelineRef.current.to(textRef.current, {
-        duration: title.length * 0.05,
-        text: baseText,
-        ease: "none",
-      });
+      // Delete the title (but keep the base text)
+      if (index !== titles.length - 1) {
+        tl.to(textRef.current, {
+          duration: 1,
+          text: baseText,
+          ease: "none",
+        });
+      }
+    });
+
+    // Blink cursor throughout animation
+    gsap.to(cursorRef.current, {
+      opacity: 0,
+      repeat: -1,
+      yoyo: true,
+      duration: 0.5,
     });
   };
 
   // Initialize typing animation
   useEffect(() => {
     initializeTypingAnimation();
-
     return () => {
       if (timelineRef.current) {
         timelineRef.current.kill();
@@ -152,8 +167,11 @@ const GitTerminal = ({ name }) => {
         <span className="font-bold">GitBash Terminal</span>
       </div>
 
-      <div ref={textRef} className="mb-4 whitespace-pre-line min-h-[60px]">
-        <span className="animate-pulse">|</span>
+      <div className="mb-4 whitespace-pre-line min-h-[60px]">
+        <span ref={textRef}></span>
+        <span ref={cursorRef} className="text-green-400">
+          |
+        </span>
       </div>
 
       <div

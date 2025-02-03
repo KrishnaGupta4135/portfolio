@@ -70,6 +70,20 @@ export const Projects = () => {
       ],
       image: "/images/Email-Spam-Classification-System.png",
     },
+    {
+      title: "Video Anomaly Detection System",
+      description:
+        "This project focuses on developing an Anomaly Detection System for surveillance videos using state-of-the-art deep learning models.",
+      tech: ["Python", "Flask", "OpenCV", "NumPy, Pandas", "Jinja2"],
+      image: "/images/Video-Anomaly-Detection.png",
+    },
+    {
+      title: "Secure P2P Messaging and File Sharing System",
+      description:
+        "This project is a secure peer-to-peer (P2P) messaging and file-sharing system with end-to-end encryption, user authentication, access controls, and audit trails.",
+      tech: ["Python", "Flask", "PostgreSQL", " AES and RSA", "AWS"],
+      image: "/images/Secure-File-Sharing.jpg",
+    },
     // {
     //   title: "Portfolio Website",
     //   description: "Personal portfolio with GSAP animations",

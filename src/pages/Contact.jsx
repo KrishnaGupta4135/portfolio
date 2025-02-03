@@ -1,11 +1,18 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Mail, Github, Linkedin, Twitter } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import Toast from "typescript-toastify";
 
 export const Contact = () => {
   const formRef = useRef(null);
   const socialRef = useRef(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Simplified animation implementation
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -25,6 +32,51 @@ export const Contact = () => {
     return () => observer.disconnect();
   }, []);
 
+  const showToast = (message, type = "default") => {
+    new Toast({
+      position: "bottom-right",
+      toastMsg: message,
+      autoCloseTime: 3000,
+      canClose: true,
+      showProgress: true,
+      pauseOnHover: true,
+      pauseOnFocusLoss: true,
+      type: type,
+      theme: "dark",
+    });
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const result = await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      if (result.status === 200) {
+        showToast("Message sent successfully! 🎉", "default");
+        setFormData({ name: "", email: "", message: "" });
+      }
+    } catch (error) {
+      showToast("Failed to send message. Please try again. 😕", "default");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="max-w-2xl mx-auto space-y-10 mb-16">
       <div className="text-center">
@@ -36,6 +88,7 @@ export const Contact = () => {
 
       <form
         ref={formRef}
+        onSubmit={handleSubmit}
         className="space-y-6"
         style={{
           opacity: 0,
@@ -48,6 +101,10 @@ export const Contact = () => {
             <label className="block text-sm font-medium mb-2">Name</label>
             <input
               type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
               className="w-full bg-gray-800/50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500"
             />
           </div>
@@ -55,6 +112,10 @@ export const Contact = () => {
             <label className="block text-sm font-medium mb-2">Email</label>
             <input
               type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
               className="w-full bg-gray-800/50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500"
             />
           </div>
@@ -62,15 +123,23 @@ export const Contact = () => {
         <div>
           <label className="block text-sm font-medium mb-2">Message</label>
           <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            required
             rows={6}
             className="w-full bg-gray-800/50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500"
           />
         </div>
+
         <button
           type="submit"
-          className="w-full bg-purple-500 hover:bg-purple-600 text-white font-medium py-3 rounded-lg transition-colors"
+          disabled={isSubmitting}
+          className={`w-full bg-purple-500 hover:bg-purple-600 text-white font-medium py-3 rounded-lg transition-colors ${
+            isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+          }`}
         >
-          Send Message
+          {isSubmitting ? "Sending..." : "Send Message"}
         </button>
       </form>
 
@@ -105,30 +174,7 @@ export const Contact = () => {
             <h3 className="font-medium">LinkedIn</h3>
             <p className="text-sm text-gray-400">Let's connect</p>
           </a>
-
-          {/* <a
-            href="mailto:krishnagupta4135@gmail.com"
-            className="flex flex-col items-center p-6 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors"
-          >
-            <Mail className="w-8 h-8 mb-2" />
-            <h3 className="font-medium">Email</h3>
-            <p className="text-sm text-gray-400">Drop me a line</p>
-          </a> */}
         </div>
-
-        {/* <div className="text-center">
-          <p className="text-gray-400">Prefer to connect on other platforms?</p>
-          <div className="flex items-center justify-center gap-4 mt-4">
-            <a
-              href="https://twitter.com/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 hover:text-purple-500 transition-colors"
-            >
-              <Twitter className="w-5 h-5" />
-            </a>
-          </div>
-        </div> */}
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import { Home } from "./pages/Home.jsx";
 import { Projects } from "./pages/Projects.jsx";
 import { Experience } from "./pages/Experience.jsx";
 import Layout from "./components/Layout .jsx";
-import { Contact } from "./pages/Contact.jsx";
+import Contact from "./pages/Contact.jsx";
 // import { Tools } from "./pages/Tools";
 
 // Register ScrollTrigger plugin

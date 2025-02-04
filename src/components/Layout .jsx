@@ -219,7 +219,7 @@ const Layout = ({ children }) => {
                     <X size={24} />
                   </button>
                 )}
-                <GitTerminal name="John Doe" />
+                <GitTerminal name="Krishna Gupta" />
               </div>
             </div>
 
